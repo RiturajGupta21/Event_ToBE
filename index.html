@@ -79,8 +79,8 @@
                 <div class="swiper-slide context-dark"
                     data-title="&lt;span class=&quot;swiper-pagination-title&quot;&gt;About Us&lt;/span&gt;&lt;span class=&quot;fa fa-user swiper-pagination-icon&quot;&gt;&lt;/span&gt;">
                     <div class="parallax-scene container-screen">
-                        <div class="layer container-screen parallax-scene-img-height" data-depth="0.05"><img
-                                src="images/background-15.jpg" alt=""></div>
+                        <div class="layer container-screen parallax-scene-img-height" data-depth="0.05"><video
+                                src="./video/gfp-astro-timelapse.mp4" autoplay loop></video></div>
                     </div>
                     <div class="swiper-slide-caption" data-swiper-parallax="-1000" data-swiper-parallax-opacity="0">
                         <div class="container">
@@ -148,8 +148,8 @@
                 <div class="swiper-slide context-dark"
                     data-title="&lt;span class=&quot;swiper-pagination-title&quot;&gt;Events&lt;/span&gt;&lt;span class=&quot;fa fa-calendar swiper-pagination-icon&quot;&gt;&lt;/span&gt;">
                     <div class="parallax-scene container-screen">
-                        <div class="layer container-screen parallax-scene-img-height" data-depth="0.05"><img
-                                src="images/background-15.jpg" alt=""></div>
+                        <div class="layer container-screen parallax-scene-img-height" data-depth="0.05"><video
+                                src="./video/pexels-mikhail-nilov-7677513.mp4" autoplay loop></video></div>
                     </div>
                     <div class="swiper-slide-caption" data-swiper-parallax="-1000" data-swiper-parallax-opacity="0">
                         <div class="container">
@@ -211,8 +211,8 @@
                 <div class="swiper-slide context-dark"
                     data-title="&lt;span class=&quot;swiper-pagination-title&quot;&gt;Team&lt;/span&gt;&lt;span class=&quot;fa fa-users swiper-pagination-icon&quot;&gt;&lt;/span&gt;">
                     <div class="parallax-scene container-screen">
-                        <div class="layer container-screen parallax-scene-img-height" data-depth="0.05"><img
-                                src="images/background-15.jpg" alt=""></div>
+                        <div class="layer container-screen parallax-scene-img-height" data-depth="0.05"><video
+                                src="./video/production ID_5091624.mp4" autoplay loop></video></div>
                     </div>
                     <div class="swiper-slide-caption" data-swiper-parallax="-1000" data-swiper-parallax-opacity="0">
                         <div class="container">
@@ -295,9 +295,9 @@
                                     <!-- <div class="offer-box-subheading text-md-right" data-swiper-parallax="-3000"
                                         data-swiper-parallax-opacity="0">Work</div> -->
                                     <div class="offer-box-title" data-swiper-parallax="-2000"
-                                        data-swiper-parallax-opacity="0">Achive</div>
+                                        data-swiper-parallax-opacity="0">Register</div>
                                     <div class="offer-box-subtitle" data-swiper-parallax="-100"
-                                        data-swiper-parallax-opacity="0">1111111 </div>
+                                        data-swiper-parallax-opacity="0">Fill Up </div>
                                     <form>
                                         <div class="container">
                                             <hr>
@@ -306,11 +306,11 @@
                                                 required>
 
                                             <label for="psw"><b>Name</b></label>
-                                            <input type="text" placeholder="Enter Name" name="psw" id="psw" required>
+                                            <input type="text" placeholder="Enter Name" name="psw" id="name" required>
 
                                             <label for="psw-repeat"><b>Number</b></label>
                                             <input type="text" placeholder="Mobile Number" name="psw-repeat"
-                                                id="psw-repeat" required>
+                                                id="number" required>
                                             <hr>
                                             <button type="submit" class="registerbtn" id="insert">Register</button>
                                         </div>
@@ -325,8 +325,8 @@
                 <div class="swiper-slide context-dark"
                     data-title="&lt;span class=&quot;swiper-pagination-title&quot;&gt;Contacts&lt;/span&gt;&lt;span class=&quot;fa fa-envelope swiper-pagination-icon&quot;&gt;&lt;/span&gt;">
                     <div class="parallax-scene container-screen">
-                        <div class="layer container-screen parallax-scene-img-height" data-depth="0.05"><img
-                                src="images/background-15.jpg" alt=""></div>
+                        <div class="layer container-screen parallax-scene-img-height" data-depth="0.05"><video
+                                src="./video/video.mp4" autoplay loop></video></div>
                     </div>
                     <div class="swiper-slide-caption" data-swiper-parallax="-2000" data-swiper-parallax-opacity="0">
                         <div class="container">
@@ -405,6 +405,12 @@
                         <li><a class="icon icon-xxs icon-gray icon-circle fa fa-github" href="#"></a></li>
                         <li><a class="icon icon-xxs icon-gray icon-circle fa fa-youtube" href="#"></a></li>
                         <li><a class="icon icon-xxs icon-gray icon-circle fa fa-linkedin" href="#"></a></li>
+                    </ul>
+                    <ul>
+                        <li id="day" class="icon icon-xxs icon-gray icon-circle" style="color: rgb(0, 255, 0);"></li>
+                        <li id="hours" class="icon icon-xxs icon-gray icon-circle" style="color: rgb(0, 255, 0);"></li>
+                        <li id="mins" class="icon icon-xxs icon-gray icon-circle" style="color: rgb(0, 255, 0);"></li>
+                        <li id="secs" class="icon icon-xxs icon-gray icon-circle" style="color: rgb(0, 255, 0);"></li>
                     </ul>
                 </div>
             </div>
@@ -521,43 +527,35 @@
     <div class="snackbars" id="form-output-global"></div>
     <!-- Javascript-->
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
         const firebaseConfig = {
-          apiKey: "AIzaSyDD8xNgFIB-U_Uw0FidRJn3wqSdO04x9l8",
-          authDomain: "test-fb589.firebaseapp.com",
-          databaseURL: "https://test-fb589-default-rtdb.firebaseio.com",
-          projectId: "test-fb589",
-          storageBucket: "test-fb589.appspot.com",
-          messagingSenderId: "147501012496",
-          appId: "1:147501012496:web:018ff7f34738fd19a85c95"
+            apiKey: "AIzaSyDD8xNgFIB-U_Uw0FidRJn3wqSdO04x9l8",
+            authDomain: "test-fb589.firebaseapp.com",
+            databaseURL: "https://test-fb589-default-rtdb.firebaseio.com/",
+            projectId: "test-fb589",
+            storageBucket: "test-fb589.appspot.com",
+            messagingSenderId: "147501012496",
+            appId: "1:147501012496:web:018ff7f34738fd19a85c95"
         };
-      
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        import {getDatabase,ref,set} from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
-        const db= getDatabase();
-        var email = document.getElementById('email');
-        var name = document.getElementById('psw');
-        var number = document.getElementById('psw-repeat');
-        var insert = document.getElementById('insert');
-        function insertData(){
-            set(ref(db,"Register/"+name.value),{
-                email: email.value,
-                number: number.value
-            }).then(()=>{
-                alert("Data saved sucessfully");
-            }).catch((error)=>{
-                alert("Unsuccessful, error"+error);
+        const db = getDatabase(app);
+        document.getElementById('insert').addEventListener('click',
+        function writeUserData(email, name, number) {
+            email = document.getElementById('email').value;
+            name = document.getElementById('name').value;
+            number = document.getElementById('number').value;
+            set(ref(db, 'users/'+email), {
+                name: name,
+                email: email,
+                number: number
             });
-            console.log("Hello");
+            console.log("Saved");
+            alert("Data Saved Successfully");
         }
-        insert.addEventListener('click',insertData);
-      </script>
+        )
+
+    </script>
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
 
